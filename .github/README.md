@@ -779,17 +779,31 @@ Click the button below, to deploy to Vercel 👇
 
 ### Deploying - Option #3: Docker
 
-Run `docker run -p 3000:3000 lissy93/web-check`, then open [`localhost:3000`](http://localhost:3000)
+To deploy using Docker Compose, follow these steps:
 
-<details>
-<summary>Docker Options</summary>
+1. Create a file named `docker-compose.yml` in your project directory and add the following content:
 
-You can get the Docker image from:
-- DockerHub: [`lissy93/web-check`](https://hub.docker.com/r/lissy93/web-check)
-- GHCR: [`ghcr.io/lissy93/web-check`](https://github.com/Lissy93/web-check/pkgs/container/web-check)
-- Or build the image yourself by cloning the repo and running `docker build -t web-check .`
+    ```yaml
+    version: '3.9'
 
-</details>
+    services:
+      web-check:
+        image: lissy93/web-check
+        ports:
+          - "3000:3000"
+        restart: always
+        container_name: web-check
+    ```
+
+2. Run the following command to start the service:
+
+    ```sh
+    docker-compose up -d
+    ```
+
+3. Open [`localhost:3000`](http://localhost:3000) in your browser to access the service.
+
+This configuration sets up a detached container, names it `web-check`, and configures it to auto-restart, enabling continuous operation in your environment for OSINT searches.
 
 ### Deploying - Option #4: From Source
 
